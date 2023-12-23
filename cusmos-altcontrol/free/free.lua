@@ -10,11 +10,11 @@ local Variables = {
     Player = game.Players.LocalPlayer
 }
 
-if not game:IsLoaded() then
-    repeat
-        wait()
-    until game:IsLoaded()
-end
+--if not game:IsLoaded() then
+--    repeat
+--        wait()
+--    until game:IsLoaded()
+--end
 
 local function ShowWallet()
     local Player = game.Players.LocalPlayer
