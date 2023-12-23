@@ -364,7 +364,7 @@ if game.PlaceId == 2788229376 then
     --
     -- checkAndKick()
 
-    local groupId = 14181223 -- obv
+    local groupId = 14181223 -- Replace with your desired group ID
 
     local function isUserInGroup(userId)
         local success, result = pcall(function()
