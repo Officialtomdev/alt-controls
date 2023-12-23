@@ -652,7 +652,7 @@ if game.PlaceId == 2788229376 then
             TextLabel.Position = UDim2.new(0.379002213, 0, 0.0237247907, 0)
             TextLabel.Size = UDim2.new(0, 325, 0, 54)
             TextLabel.Font = Enum.Font.Code
-            TextLabel.Text = "newww"
+            TextLabel.Text = "CUSMOS ALT CONTROL MADE BY tomdevw"
             TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.TextScaled = true
             TextLabel.TextSize = 14.000
