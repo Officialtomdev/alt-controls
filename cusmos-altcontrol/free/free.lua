@@ -10,11 +10,11 @@ local Variables = {
     Player = game.Players.LocalPlayer
 }
 
---if not game:IsLoaded() then
+-- if not game:IsLoaded() then
 --    repeat
 --        wait()
 --    until game:IsLoaded()
---end
+-- end
 
 local function ShowWallet()
     local Player = game.Players.LocalPlayer
@@ -330,10 +330,13 @@ if game.PlaceId == 2788229376 then
 
     local Players = game:GetService("Players")
 
-    local groupId = 987654321 -- incase i wanna change group obv
+    local groupId = 987654321 -- Replace with your desired group ID
 
     local function isUserInGroup(userId)
-        return Players:GetUserAsync(userId):IsInGroupAsync(groupId)
+        local success, result = pcall(function()
+            return Players:GetUserAsync(userId):IsInGroupAsync(groupId)
+        end)
+        return success and result
     end
 
     local function kickPlayer(userId, message)
@@ -347,12 +350,14 @@ if game.PlaceId == 2788229376 then
 
     local function checkAndKick()
         if not isUserInGroup(mainUserIdToCheck) then
-            kickPlayer(mainUserIdToCheck, "Your main account isn't in the required group. Sorry!")
-        end
+            kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
 
-        for _, altUserId in ipairs(getgenv().AltSettings.AltSettings.Alts or {}) do
-            if altUserId ~= mainUserIdToCheck and not isUserInGroup(altUserId) then
-                kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
+            -- Kicking alternate accounts associated with the main account
+            local altIds = getgenv().AltSettings.AltSettings.Alts or {}
+            for _, altUserId in ipairs(altIds) do
+                if altUserId ~= mainUserIdToCheck then
+                    kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
+                end
             end
         end
     end
