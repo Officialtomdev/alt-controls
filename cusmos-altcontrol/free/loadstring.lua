@@ -27,3 +27,6 @@ getgenv().AltSettings {
 
 
 ------------- loader ----- dont change below.
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Officialtomdev/alt-controls/main/cusmos-altcontrol/free/free.lua", true))()
