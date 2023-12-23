@@ -429,23 +429,23 @@ if game.PlaceId == 2788229376 then
                 for i, v in pairs(getgenv().AltSettings.AltSettings.Alts) do
                     if v == plr.UserId then
 
-                        if finalMsg == getgenv().Settings.prefix .. "setup bank" then
+                        if finalMsg == getgenv().Settings.Settings.prefix .. "setup bank" then
                             setupbank()
                         end
 
-                        if finalMsg == getgenv().Settings.prefix .. "drop" then
+                        if finalMsg == getgenv().Settings.Settings.prefix .. "drop" then
                             drop()
                         end
 
-                        if finalMsg == getgenv().Settings.prefix .. "stop" then
+                        if finalMsg == getgenv().Settings.Settings.prefix .. "stop" then
                             stopdrop()
                         end
 
-                        if finalMsg == getgenv().Settings.prefix .. "wallet" then
+                        if finalMsg == getgenv().Settings.Settings.prefix .. "wallet" then
                             ShowWallet()
                         end
 
-                        if finalMsg == getgenv().Settings.prefix .. "stopwallet" then
+                        if finalMsg == getgenv().Settings.Settings.prefix .. "stopwallet" then
                             RemoveWallet()
                         end
 
