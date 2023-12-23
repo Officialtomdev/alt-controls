@@ -353,7 +353,7 @@ if game.PlaceId == 2788229376 then
         if not isUserInGroup(mainUserIdToCheck) then
             kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
             local altIds = getgenv().AltSettings.AltSettings.Alts or {}
-            for altName, altUserId in pairs(altIds) do
+            for altName, altUserId in ipairs(altIds) do
                 if altUserId ~= mainUserIdToCheck then
                     if not isUserInGroup(altUserId) then
                         kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
