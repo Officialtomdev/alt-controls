@@ -1,19 +1,14 @@
 getgenv().Settings = {
     ["HostSettings"] = {
         ["Controller"] = 12345, -- host must be inside of 
-        ["Hostfps"] = 30, -- set to null for unlimited
-        ["ControllerGui"] = true,
+
+        ----[ keep stuff down below, will be coming soon ] ----
+       -- ["Hostfps"] = 30, -- coming soon
+       -- ["ControllerGui"] = true, Coming soon
     },
     ["Settings"] = {
         ["prefix"] = "!"
     },
-    ["CrewSettings"] = { -- alt must already be in the group id
-        ["CrewID"] = 1,
-        ["JoinCrew"] = true
-    },
-    ["AdSettings"] = {
-        ["Message"] = "" -- put a message in here ( you can always change with using setad command)
-    }
 
 }
 

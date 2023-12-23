@@ -330,36 +330,34 @@ if game.PlaceId == 2788229376 then
 
     local Players = game:GetService("Players")
 
-
     local groupId = 987654321 -- incase i wanna change group obv
-    
+
     local function isUserInGroup(userId)
         return Players:GetUserAsync(userId):IsInGroupAsync(groupId)
     end
-    
+
     local function kickPlayer(userId, message)
         local player = Players:GetPlayerByUserId(userId)
         if player then
             player:Kick(message)
         end
     end
-    
+
     local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
-    
+
     local function checkAndKick()
         if not isUserInGroup(mainUserIdToCheck) then
             kickPlayer(mainUserIdToCheck, "Your main account isn't in the required group. Sorry!")
         end
-    
+
         for _, altUserId in ipairs(getgenv().AltSettings.AltSettings.Alts or {}) do
             if altUserId ~= mainUserIdToCheck and not isUserInGroup(altUserId) then
                 kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
             end
         end
     end
-    
+
     checkAndKick()
-    
 
     getgenv().adverting = false
     getgenv().isDropping = false
@@ -390,23 +388,23 @@ if game.PlaceId == 2788229376 then
                 for i, v in pairs(getgenv().AltSettings.AltSettings.Alts) do
                     if v == plr.UserId then
 
-                        if finalMsg == getgenv().prefix .. "setup bank" then
+                        if finalMsg == getgenv().Settings.prefix .. "setup bank" then
                             setupbank()
                         end
 
-                        if finalMsg == getgenv().prefix .. "drop" then
+                        if finalMsg == getgenv().Settings.prefix .. "drop" then
                             drop()
                         end
 
-                        if finalMsg == getgenv().prefix .. "stop" then
+                        if finalMsg == getgenv().Settings.prefix .. "stop" then
                             stopdrop()
                         end
 
-                        if finalMsg == getgenv().prefix .. "wallet" then
+                        if finalMsg == getgenv().Settings.prefix .. "wallet" then
                             ShowWallet()
                         end
 
-                        if finalMsg == getgenv().prefix .. "stopwallet" then
+                        if finalMsg == getgenv().Settings.prefix .. "stopwallet" then
                             RemoveWallet()
                         end
 
