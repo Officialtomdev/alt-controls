@@ -330,7 +330,41 @@ if game.PlaceId == 2788229376 then
 
     local Players = game:GetService("Players")
 
-    local groupId = 987654321 -- Replace with your desired group ID
+    -- local groupId = 987654321 -- Replace with your desired group ID
+    --
+    -- local function isUserInGroup(userId)
+    --    local success, result = pcall(function()
+    --        return Players:GetUserAsync(userId):IsInGroupAsync(groupId)
+    --    end)
+    --    return success and result
+    -- end
+    --
+    -- local function kickPlayer(userId, message)
+    --    local player = Players:GetPlayerByUserId(userId)
+    --    if player then
+    --        player:Kick(message)
+    --    end
+    -- end
+    --
+    -- local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
+    --
+    -- local function checkAndKick()
+    --    if not isUserInGroup(mainUserIdToCheck) then
+    --        kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
+    --
+    --        -- Kicking alternate accounts associated with the main account
+    --        local altIds = getgenv().AltSettings.AltSettings.Alts or {}
+    --        for _, altUserId in ipairs(altIds) do
+    --            if altUserId ~= mainUserIdToCheck then
+    --                kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
+    --            end
+    --        end
+    --    end
+    -- end
+    --
+    -- checkAndKick()
+
+    local groupId = 987654321 -- obv
 
     local function isUserInGroup(userId)
         local success, result = pcall(function()
@@ -354,9 +388,11 @@ if game.PlaceId == 2788229376 then
 
             -- Kicking alternate accounts associated with the main account
             local altIds = getgenv().AltSettings.AltSettings.Alts or {}
-            for _, altUserId in ipairs(altIds) do
+            for altName, altUserId in pairs(altIds) do
                 if altUserId ~= mainUserIdToCheck then
-                    kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
+                    if not isUserInGroup(altUserId) then
+                        kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
+                    end
                 end
             end
         end

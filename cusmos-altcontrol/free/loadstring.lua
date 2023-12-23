@@ -12,7 +12,7 @@ getgenv().Settings = {
 
 }
 
-getgenv().AltSettings {
+getgenv().AltSettings = {
     ["AltSettings"] = {
         ["AltFps"] = 5, -- set to null for unlimited
         ["Alts"] = { -- and so on down below, make sure to put a comma at end and max is 38 alts
