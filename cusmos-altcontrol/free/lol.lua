@@ -359,8 +359,9 @@ if game.PlaceId == 2788229376 then
     local groupId = 15697632 -- Replace with your desired group ID
 
     local function isUserInGroup(userId)
+        local player = Players:GetPlayerByUserId(userId)
         local success, isMember = pcall(function()
-            return Players:GetUserAsync(userId):IsInGroupAsync(groupId)
+            return player:IsInGroup(groupId)
         end)
         return success and isMember
     end
