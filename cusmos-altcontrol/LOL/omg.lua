@@ -10,11 +10,33 @@ local Variables = {
     Player = game.Players.LocalPlayer
 }
 
--- if not game:IsLoaded() then
---    repeat
---        wait()
---    until game:IsLoaded()
--- end
+ if not game:IsLoaded() then
+    repeat
+        wait()
+    until game:IsLoaded()
+ end
+
+ local function putinair(Type)
+    if CmdSettings["AirLock"] == nil and Type == true then
+        local BP = Variables["Player"].Character.HumanoidRootPart:FindFirstChild("AirLockBP")
+        if BP then
+            BP:Destroy()
+        end
+        CmdSettings["AirLock"] = true
+        Variables["Player"].Character.HumanoidRootPart.CFrame =
+            Variables["Player"].Character.HumanoidRootPart.CFrame * CFrame.new(0, 10, 0)
+        local BP = Instance.new("BodyPosition", Variables["Player"].Character.HumanoidRootPart)
+        BP.Name = "AirLockBP"
+        BP.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+        BP.Position = Variables["Player"].Character.HumanoidRootPart.Position
+    elseif CmdSettings["AirLock"] == true and Type == false then
+        CmdSettings["AirLock"] = nil
+        local BP = Variables["Player"].Character.HumanoidRootPart:FindFirstChild("AirLockBP")
+        if BP then
+            BP:Destroy()
+        end
+    end
+end
 
 local function ShowWallet()
     local Player = game.Players.LocalPlayer
@@ -63,6 +85,19 @@ end
 
 local function setupbank()
     game.Players.LocalPlayer.Character.Head.Anchored = false
+
+    local function getPlayerByUserId(userId)
+        for _, player in pairs(Players:GetPlayers()) do
+            if player.UserId == userId then
+                return player
+            end
+        end
+    end
+
+    local plrrlrllr = getPlayerByUserId(getgenv().Settings.HostSettings.Controller)
+
+    local targetHumanoidRootPart = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
+       targetHumanoidRootPart.CFrame = CFrame.new(-385, 21, -338)
     for i, v in pairs(getgenv().AltSettings.AltSettings.Alts) do
         if i == "Alt1" then
             if v == plr.UserId then
@@ -327,6 +362,9 @@ __newindex = hookmetamethod(game, "__newindex", function(t, k, v)
 end)
 
 if game.PlaceId == 2788229376 then
+    if getgenv().executed then
+        return
+    end
     -- local Players = game:GetService("Players")
     --
     -- local groupId = 14181223 -- Replace with your desired group ID
@@ -386,6 +424,7 @@ if game.PlaceId == 2788229376 then
 
     getgenv().adverting = false
     getgenv().isDropping = false
+    getgenv().executed = true
     local vu = game:GetService("VirtualUser")
     game:GetService("Players").LocalPlayer.Idled:connect(function()
         vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
@@ -431,6 +470,14 @@ if game.PlaceId == 2788229376 then
 
                         if finalMsg == getgenv().Settings.Settings.prefix .. "stopwallet" then
                             RemoveWallet()
+                        end
+
+                        if finalMsg == getgenv().Settings.Settings.prefix .. "airlock" then
+                            putinair(true)
+                        end
+
+                        if finalMsg == getgenv().Settings.Settings.prefix .. "stopairlock" then
+                            putinair(false)
                         end
 
                     end
