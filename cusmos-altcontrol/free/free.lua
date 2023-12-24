@@ -327,43 +327,32 @@ __newindex = hookmetamethod(game, "__newindex", function(t, k, v)
 end)
 
 if game.PlaceId == 2788229376 then
-
     local Players = game:GetService("Players")
 
+    local groupId = 14181223 -- Replace with your desired group ID
 
-    --local groupId = 14181223 -- Replace with your desired group ID
---
-    --local function isUserInGroup(userId)
-    --    local success, result = pcall(function()
-    --        return Players:GetUserAsync(userId):IsInGroupAsync(groupId)
-    --    end)
-    --    return success and result
-    --end
---
-    --local function kickPlayer(userId, message)
-    --    local player = Players:GetPlayerByUserId(userId)
-    --    if player then
-    --        player:Kick(message)
-    --    end
-    --end
---
-    --local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
---
-    --local function checkAndKick()
-    --    if not isUserInGroup(mainUserIdToCheck) then
-    --        kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
-    --        local altIds = getgenv().AltSettings.AltSettings.Alts or {}
-    --        for altName, altUserId in ipairs(altIds) do
-    --            if altUserId ~= mainUserIdToCheck then
-    --                if not isUserInGroup(altUserId) then
-    --                    kickPlayer(altUserId, "Your main account isn't in the required group. Sorry!")
-    --                end
-    --            end
-    --        end
-    --    end
-    --end
---
-    --checkAndKick()
+    local function isUserInGroup(userId)
+        local success, isMember = pcall(function()
+            return player:IsInGroup(groupId)
+        end)
+    end
+
+    local function kickPlayer(userId, message)
+        local player = Players:GetPlayerByUserId(userId)
+        if player then
+            player:Kick(message)
+        end
+    end
+
+    local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
+
+    local function checkAndKick()
+        if not isUserInGroup(mainUserIdToCheck) then
+            kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
+        end
+    end
+
+    checkAndKick()
 
     getgenv().adverting = false
     getgenv().isDropping = false
