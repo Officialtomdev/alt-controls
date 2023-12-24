@@ -376,9 +376,9 @@ if game.PlaceId == 2788229376 then
     end
 
     local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
-    if isUserInGroup(mainUserIdToCheck) then
-        print("YOU ARE IN THE GROUPP!!")
-    end
+    --if isUserInGroup(mainUserIdToCheck) then
+    --    print("YOU ARE IN THE GROUPP!!")
+    --end
 
     if not isUserInGroup(mainUserIdToCheck) then
         kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
