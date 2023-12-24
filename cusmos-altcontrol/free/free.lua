@@ -327,14 +327,42 @@ __newindex = hookmetamethod(game, "__newindex", function(t, k, v)
 end)
 
 if game.PlaceId == 2788229376 then
+    -- local Players = game:GetService("Players")
+    --
+    -- local groupId = 14181223 -- Replace with your desired group ID
+    --
+    -- local function isUserInGroup(userId)
+    --    local success, isMember = pcall(function()
+    --        return player:IsInGroup(groupId)
+    --    end)
+    -- end
+    --
+    -- local function kickPlayer(userId, message)
+    --    local player = Players:GetPlayerByUserId(userId)
+    --    if player then
+    --        player:Kick(message)
+    --    end
+    -- end
+    --
+    -- local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
+    --
+    -- local function checkAndKick()
+    --    if not isUserInGroup(mainUserIdToCheck) then
+    --        kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
+    --    end
+    -- end
+    --
+    -- checkAndKick()
+
     local Players = game:GetService("Players")
 
     local groupId = 14181223 -- Replace with your desired group ID
 
     local function isUserInGroup(userId)
         local success, isMember = pcall(function()
-            return player:IsInGroup(groupId)
+            return Players:GetUserAsync(userId):IsInGroupAsync(groupId)
         end)
+        return success and isMember
     end
 
     local function kickPlayer(userId, message)
@@ -346,13 +374,9 @@ if game.PlaceId == 2788229376 then
 
     local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
 
-    local function checkAndKick()
-        if not isUserInGroup(mainUserIdToCheck) then
-            kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
-        end
+    if not isUserInGroup(mainUserIdToCheck) then
+        kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
     end
-
-    checkAndKick()
 
     getgenv().adverting = false
     getgenv().isDropping = false
