@@ -356,7 +356,7 @@ if game.PlaceId == 2788229376 then
 
     local Players = game:GetService("Players")
 
-    local groupId = 14181223 -- Replace with your desired group ID
+    local groupId = 15697632 -- Replace with your desired group ID
 
     local function isUserInGroup(userId)
         local success, isMember = pcall(function()
