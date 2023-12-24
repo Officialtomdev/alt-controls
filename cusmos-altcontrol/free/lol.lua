@@ -360,7 +360,9 @@ if game.PlaceId == 2788229376 then
 
     local function isUserInGroup(userId)
         local player = Players:GetPlayerByUserId(userId)
+        print(player)
         local success, isMember = pcall(function()
+            console.log("sucesssssssss")
             return player:IsInGroup(groupId)
         end)
         return success and isMember
@@ -374,6 +376,9 @@ if game.PlaceId == 2788229376 then
     end
 
     local mainUserIdToCheck = getgenv().Settings.HostSettings.Controller
+    if isUserInGroup(mainUserIdToCheck) then
+        console.log("YOU ARE IN THE GROUPP!!")
+    end
 
     if not isUserInGroup(mainUserIdToCheck) then
         kickPlayer(mainUserIdToCheck, "Your account isn't in the required group. Sorry!")
